@@ -98,8 +98,25 @@ class Collection(BaseModel):
         Returns:
             int: The total number of embeddings added to the database
 
+        Examples:
+        >>> collection_instance.count()
+        0
         """
         return self._client._count(collection_id=self.id)
+
+    def __len__(self) -> int:
+        """The total number of embeddings added to the database
+
+        Internally calls the count method. 
+
+        Returns:
+            int: The total number of embeddings added to the database
+
+        Examples:
+        >>> len(collection_instance)
+        0
+        """
+        return self.count()
 
     def add(
         self,
